@@ -1,26 +1,26 @@
-# deno-greeting ![ci](https://github.com/rjoydip/deno-greeting/workflows/ci/badge.svg)
+# deno_greeting ![ci](https://github.com/rjoydip/deno_greeting/workflows/ci/badge.svg)
 
-> Simple greeting (deno)
+> Simple greeting template (deno)
 
 ## Install
 
 ```sh
-deno install -f --name dg https://raw.githubusercontent.com/rjoydip/deno-greeting/master/cli.ts
+deno install -f --name dg https://raw.githubusercontent.com/rjoydip/deno_greeting/master/cli.ts
 ```
 
 ## Usage CLI
 
 ```sh
-$ dg --help
+$ deno-greeting --help
 
   Example
-    $ dg deno
+    $ deno-greeting deno
     Greeting: deno
 ```
 
 ## Usage API
 
 ```ts
-const { greeting } = "https://raw.githubusercontent.com/rjoydip/deno-greeting/master/cli.ts";
+const { greeting } = "https://raw.githubusercontent.com/rjoydip/deno_greeting/master/cli.ts";
 greeting("deno"); //=> Greeting: deno
 ```

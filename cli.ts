@@ -6,7 +6,7 @@ import { colors } from "./deps.ts";
 function getHelpText(): string {
   return `
     Example
-      $ dg deno
+      $ deno-greeting deno
       Greeting: ${colors.green("deno")}
     `;
 }
