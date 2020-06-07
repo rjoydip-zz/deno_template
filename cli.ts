@@ -1,38 +1,27 @@
 #!/usr/bin/env -S deno
 
 import { greeting } from "./mod.ts";
-import { colors } from "./deps.ts";
+import { parse } from "./deps.ts";
 
-function getHelpText(): string {
-  return `
-    Example
-      $ deno-greeting deno
-      Greeting: ${colors.green("deno")}
-    `;
-}
+export const defaultHelpText = `
+Example:
+  $ <name of installer> <input>
+  Hello <input>
+  `.trim();
 
 function help(): void {
-  const helpText = getHelpText();
-  console.log(helpText);
+  console.log(defaultHelpText);
 }
 
 async function cli() {
-  const args = Deno.args;
+  const args = parse(Deno.args);
 
-  if (args.length === 0) {
-    help();
-    Deno.exit();
-  }
-
-  if (args[0] === "--help" || args[0] === "-h" || args[0] === "help") {
-    help();
-    Deno.exit();
-  }
+  if (!args._.length) return help();
+  if (args.help || args.h) return help();
 
   try {
-    const addResult = greeting(args[0]);
-    console.log(`${addResult}`);
-    Deno.exit();
+    const input = args._.map((i) => i.toString());
+    console.log(`\n${greeting(input[0])}`);
   } catch (error) {
     console.log(error);
     Deno.exit(1);
