@@ -1,4 +1,4 @@
-name: ci
+name: build
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
         deno-version: ${{ matrix.deno }}
 
     - name: Run tests
-      run: deno test --allow-net
+      run: deno test
