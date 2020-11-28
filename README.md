@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-deno install -f --name dt https://raw.githubusercontent.com/rjoydip/deno_template/master/cli.ts
+deno install -f --name deno-template https://raw.githubusercontent.com/rjoydip/deno_template/master/cli.ts
 ```
 
 ## Usage CLI
@@ -32,7 +32,3 @@ const { greeting } = "https://deno.land/x/deno_template/cli.ts"; // If module is
 const { greeting } = "https://raw.githubusercontent.com/rjoydip/deno_template/master/cli.ts";
 greeting("deno"); //=> Hello deno
 ```
-
-## Inspired
-
-[deno_template](https://github.com/rjoydip/deno_template) - Simple deno template to start from scratch.
