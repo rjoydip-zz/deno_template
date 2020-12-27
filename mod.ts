@@ -1,7 +1,3 @@
-export function greeting(str?: string): string {
-  if (str) {
-    return `Hello ${str}`;
-  } else {
-    throw new Error("Please provide an input");
-  }
+export function hello(str?: string): string {
+  return "Hello deno";
 }

@@ -1,13 +1,13 @@
 import { defaultHelpText } from "../cli.ts";
 import { assertEquals } from "./test_deps.ts";
 
-const { test } = Deno;
+const { test, run } = Deno;
 
 test({
   name: "default",
   ignore: true, // https://github.com/denoland/deno/issues/4830
   fn: async () => {
-    const proc = Deno.run({
+    const proc = run({
       cmd: ["deno", "run", "--allow-run", "./cli.ts"],
       stdout: "piped",
       stderr: "piped",

@@ -1,6 +1,5 @@
 #!/usr/bin/env -S deno
 
-import { greeting } from "./mod.ts";
 import { parse } from "./deps.ts";
 
 export const defaultHelpText = `
@@ -13,7 +12,7 @@ function help(): void {
   console.log(defaultHelpText);
 }
 
-async function cli() {
+function main() {
   const args = parse(Deno.args);
 
   if (!args._.length) return help();
@@ -21,11 +20,11 @@ async function cli() {
 
   try {
     const input = args._.map((i) => i.toString());
-    console.log(`\n${greeting(input[0])}`);
+    console.log(`Hello ${input[0]}`);
   } catch (error) {
     console.log(error);
     Deno.exit(1);
   }
 }
 
-cli();
+main();
