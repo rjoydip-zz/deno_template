@@ -9,17 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        deno: [1.0.0, 0.42.0]
-    name: Deno ${{ matrix.deno }}
     steps:
     - uses: actions/checkout@master
-      
     - name: Setup Deno environment
-      uses: denolib/setup-deno@master
+      uses: denolib/setup-deno@v2.3.0
       with:
-        deno-version: ${{ matrix.deno }}
-
+        deno-version: v1.x
+    - name: Run lint
+      run: deno lint --unstable
     - name: Run tests
       run: deno test
