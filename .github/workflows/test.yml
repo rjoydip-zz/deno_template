@@ -1,0 +1,34 @@
+name: Deno Template CI
+
+on:
+  push:
+    branches-ignore:
+      - "master"
+  pull_request:
+    branches-ignore:
+      - "master"
+
+jobs:
+  build:
+    name: ${{ matrix.kind }} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest, windows-latest]
+    env:
+      GH_ACTIONS: true
+      DENO_BUILD_MODE: release
+      V8_BINARY: true
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Deno environment
+        uses: denolib/setup-deno@v2.3.0
+        with:
+          deno-version: v1.x
+      - name: Cache Dependencies
+        run: deno cache deps.ts
+      - name: Lint
+        run: deno lint --unstable
+      - name: Test
+        run: deno test
