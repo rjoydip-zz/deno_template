@@ -15,7 +15,6 @@ function help(): void {
 function main() {
   const args = parse(Deno.args);
 
-  if (!args._.length) return help();
   if (args.help || args.h) return help();
 
   try {

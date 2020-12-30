@@ -1,4 +1,7 @@
-# deno_template ![Build status](https://github.com/rjoydip/deno_template/workflows/build/badge.svg)
+# deno_template
+
+![Deno Template CI](https://github.com/rjoydip/deno_template/workflows/Deno%20Template%20CI/badge.svg)
+(![Deno Template Release CI](https://github.com/rjoydip/deno_template/workflows/Deno%20Template%20Release%20CI/badge.svg))
 
 > Simple deno template to start from scratch.
 

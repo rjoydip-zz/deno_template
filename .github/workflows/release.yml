@@ -1,0 +1,46 @@
+name: Deno Template Release CI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Deno environment
+        uses: denolib/setup-deno@v2.3.0
+        with:
+          deno-version: v1.x
+      - name: Cache Dependencies
+        run: deno cache deps.ts
+      - name: Lint
+        run: deno lint --unstable
+      - name: Test
+        run: deno test
+      - name: Build project
+        run: |
+          zip -r deno_template-artifact ./* .vscode/* -x '*.git*'
+      - name: Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./deno_template-artifact.zip
+          asset_name: deno_template-artifact.zip
+          asset_content_type: application/zip
